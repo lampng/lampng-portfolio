@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+'use client';
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
+import DockMenu from '@/components/ui/dockMenu';
 import { ArrowRight, Circle, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
-
+import { BlurFade } from '@/components/ui/blur-fade';
+import { TextAnimate } from '@/components/ui/text-animate';
 import Link from 'next/link';
-
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+const BLUR_FADE_DELAY = 0.04;
 export default function Home() {
     return (
         <main className="min-h-screen max-w-2xl mx-auto  py-12 px-6  sm:py-24">
@@ -25,9 +30,11 @@ export default function Home() {
                             </span>
                         </div>
                     </div>
-                    <div className="w-30 h-30 relative overflow-hidden rounded-full center">
-                        <Image src="/me.jpg" alt="avatar" fill className="object-cover" />
-                    </div>
+                    <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
+                        <Avatar className="size-28 md:size-38 border rounded-full shadow-lg ring-4 ring-muted">
+                            <AvatarImage alt="lampng" src="/me.jpg" />
+                        </Avatar>
+                    </BlurFade>
                 </div>
             </section>
             {/* About section */}
@@ -107,13 +114,17 @@ export default function Home() {
             <section about="Project" className="mt-10">
                 <div className="flex flex-col items-center justify-center text-center space-y-3">
                     <Button className="pointer-events-none">Contact</Button>
-                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-                        Get in Touch
-                    </h1>
-                    <span className="text-muted-foreground">Feel free to reach out if youd like to chat Simply send me an <a href="mailto:lampngia@gmail.com" className=''>email with your question</a> and I&apos;ll get back to you as soon as possible.</span>
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">Get in Touch</h1>
+                    <span className="text-muted-foreground">
+                        Feel free to reach out if youd like to chat Simply send me an{' '}
+                        <a href="mailto:lampngia@gmail.com" className="">
+                            email with your question
+                        </a>{' '}
+                        and I&apos;ll get back to you as soon as possible.
+                    </span>
                 </div>
             </section>
-
+            <DockMenu />
         </main>
     );
 }

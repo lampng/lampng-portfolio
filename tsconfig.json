@@ -18,10 +18,10 @@
                 "name": "next"
             }
         ],
-        "baseUrl": "src/",
+        "baseUrl": ".",
         "paths": {
-            "@/lib/*": ["lib/*"],
-            "@/components/*": ["components/*"]
+            "@/components/*": ["src/components/*"],
+            "@/lib/*": ["src/lib/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/dev/types/**/*.ts", "**/*.mts"],
