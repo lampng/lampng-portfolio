@@ -58,7 +58,7 @@ export default function Home() {
                             </div>
                         </AccordionTrigger>
 
-                        <AccordionContent className="pl-16 text-muted-foreground">
+                        <AccordionContent className="pl-12 text-muted-foreground">
                             <span className="font-bold underline">HTML</span> -{' '}
                             <span className="font-bold underline">CSS</span> /{' '}
                             <span className="font-bold underline">TailwindCSS</span> -{' '}
@@ -82,7 +82,7 @@ export default function Home() {
                             </div>
                         </AccordionTrigger>
 
-                        <AccordionContent className="pl-10 text-muted-foreground">
+                        <AccordionContent className="pl-12 text-muted-foreground">
                             <span className="font-bold underline">Node.js</span> -{' '}
                             <span className="font-bold underline">Express</span> /{' '}
                             <span className="font-bold underline">NestJS</span> -{' '}
@@ -96,12 +96,24 @@ export default function Home() {
             <section about="Project" className="mt-10">
                 <div className="flex flex-col items-center justify-center text-center space-y-3">
                     <Button className="pointer-events-none">My Project</Button>
-                    <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl xl:text-4xl/none">
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
                         Check out my latest project
                     </h1>
                     <span className="text-muted-foreground">Here are some of the projects I&apos;ve worked on.</span>
                 </div>
             </section>
+            {/* Contact */}
+            {/* Project section */}
+            <section about="Project" className="mt-10">
+                <div className="flex flex-col items-center justify-center text-center space-y-3">
+                    <Button className="pointer-events-none">Contact</Button>
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
+                        Get in Touch
+                    </h1>
+                    <span className="text-muted-foreground">Feel free to reach out if youd like to chat Simply send me an <a href="mailto:lampngia@gmail.com" className=''>email with your question</a> and I&apos;ll get back to you as soon as possible.</span>
+                </div>
+            </section>
+
         </main>
     );
 }
