@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Dock, DockIcon } from './dock';
-import { Github, Home, Notebook, Sun } from 'lucide-react';
+import { Github, Home, Notebook, Sun, FolderCode } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DockMenu() {
@@ -15,18 +15,24 @@ export default function DockMenu() {
                     </Link>
                 </DockIcon>
                 <DockIcon>
-                    <Link href="/blog"><Notebook /></Link>
-                    
+                    <Link href="/project">
+                        <FolderCode />
+                    </Link>
                 </DockIcon>
                 <DockIcon>
-                    <Link href="https://github.com/lampng"><Github /></Link>
-
-                    
+                    <Link href="/blog">
+                        <Notebook />
+                    </Link>
                 </DockIcon>
                 <DockIcon>
-                    <Link href="/"><Sun /></Link>
-
-                    
+                    <Link href="https://github.com/lampng">
+                        <Github />
+                    </Link>
+                </DockIcon>
+                <DockIcon>
+                    <Link href="/">
+                        <Sun />
+                    </Link>
                 </DockIcon>
             </Dock>
         </div>
