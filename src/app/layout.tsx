@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import DockMenu from '@/components/ui/dockMenu';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className={cn('font-sans', geist.variable)}>
             <body>
+                <ScrollProgress/>
                 {children}
                 <DockMenu />
             </body>

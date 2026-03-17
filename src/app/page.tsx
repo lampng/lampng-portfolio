@@ -10,7 +10,27 @@ import { TextAnimate } from '@/components/ui/text-animate';
 import Link from 'next/link';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 const BLUR_FADE_DELAY = 0.03;
+const Technologies = [
+    {
+        frontend: ['HTML - CSS', 'TailwindCSS', 'Shadcn', 'JavaScript', 'React.js', 'Next.js'],
+        backend: ['Node.js', 'Express', ' NestJS', 'PostgreSQL', 'MongoDB'],
+    },
+];
+const project = [
+    {
+        slug: '',
+        image: '',
+        title: '',
+        content: '',
+        date: '',
+        description: '',
+        Technologies: '',
+        soucre: '',
+    },
+];
+
 export default function Home() {
+    const tech = Technologies[0];
     return (
         <main className="min-h-screen max-w-2xl mx-auto  py-12 px-6  sm:py-24">
             <section className="max-w-2xl mx-auto">
@@ -88,57 +108,28 @@ export default function Home() {
                 >
                     Technologies
                 </TextAnimate>
-                <Accordion type="single" collapsible>
-                    <BlurFade delay={BLUR_FADE_DELAY * 4} className="order-1 md:order-2" offset={0} inView>
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger className="flex items-center gap-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-8 h-8 relative rounded-full overflow-hidden">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                                            <path d="M64.5 320C64.5 461 178.1 575 319.1 575C461.1 575 575.1 461 575.1 320C575.1 180 461.1 66.1 319.1 66.1C178.1 66.1 64.5 180 64.5 320zM256.1 214L256.1 427L213.1 427L213.1 214L256.1 214zM298.1 214L426.1 214L426.1 257L298.1 257L298.1 214zM426.1 299L426.1 342L298.1 342L298.1 299L426.1 299zM298.1 384L426.1 384L426.1 427L298.1 427L298.1 384z" />
-                                        </svg>
-                                    </div>
-                                    <div className="text-left">
-                                        <p className="text-sm font-bold">Front-End</p>
-                                    </div>
-                                </div>
-                            </AccordionTrigger>
+                <Accordion type="single" collapsible className="w-full">
+                    {Object.entries(tech).map(([key, items]) => {
+                        return (
+                            <AccordionItem key={key} value={key}>
+                                <AccordionTrigger className="capitalize">{key}</AccordionTrigger>
 
-                            <AccordionContent className="pl-12 text-muted-foreground">
-                                <span className="font-bold underline">HTML</span> -{' '}
-                                <span className="font-bold underline">CSS</span> /{' '}
-                                <span className="font-bold underline">TailwindCSS</span> -{' '}
-                                <span className="font-bold underline">Shadcn</span> -{' '}
-                                <span className="font-bold underline">JavaScript</span> -{' '}
-                                <span className="font-bold underline">React.js</span> -{' '}
-                                <span className="font-bold underline">Next.js</span>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </BlurFade>
-                    <BlurFade delay={BLUR_FADE_DELAY * 5} className="order-1 md:order-2" offset={0} inView>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger className="flex items-center gap-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-8 h-8 relative rounded-full overflow-hidden">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                                            <path d="M544 269.8C529.2 279.6 512.2 287.5 494.5 293.8C447.5 310.6 385.8 320 320 320C254.2 320 192.4 310.5 145.5 293.8C127.9 287.5 110.8 279.6 96 269.8L96 352C96 396.2 196.3 432 320 432C443.7 432 544 396.2 544 352L544 269.8zM544 192L544 144C544 99.8 443.7 64 320 64C196.3 64 96 99.8 96 144L96 192C96 236.2 196.3 272 320 272C443.7 272 544 236.2 544 192zM494.5 453.8C447.6 470.5 385.9 480 320 480C254.1 480 192.4 470.5 145.5 453.8C127.9 447.5 110.8 439.6 96 429.8L96 496C96 540.2 196.3 576 320 576C443.7 576 544 540.2 544 496L544 429.8C529.2 439.6 512.2 447.5 494.5 453.8z" />
-                                        </svg>
+                                <AccordionContent>
+                                    <div className="flex flex-wrap text-sm text-muted-foreground">
+                                        {items.map((item, index) => (
+                                            <span
+                                                key={item}
+                                                className={item === 'NestJS' ? 'font-semibold text-blue-500' : ''}
+                                            >
+                                                {item}
+                                                {index < items.length - 1 && <span className="mx-2">-</span>}
+                                            </span>
+                                        ))}
                                     </div>
-                                    <div className="text-left">
-                                        <p className="text-sm  font-bold">Backend</p>
-                                    </div>
-                                </div>
-                            </AccordionTrigger>
-
-                            <AccordionContent className="pl-12 text-muted-foreground">
-                                <span className="font-bold underline">Node.js</span> -{' '}
-                                <span className="font-bold underline">Express</span> /{' '}
-                                <span className="font-bold underline">NestJS</span> -{' '}
-                                <span className="font-bold underline">PostgreSQL</span> -{' '}
-                                <span className="font-bold underline">MongoDB</span> -{' '}
-                            </AccordionContent>
-                        </AccordionItem>
-                    </BlurFade>
+                                </AccordionContent>
+                            </AccordionItem>
+                        );
+                    })}
                 </Accordion>
             </section>
             {/* Project section */}
@@ -155,6 +146,7 @@ export default function Home() {
                         </span>
                     </BlurFade>
                 </div>
+                <div>Hello project</div>
             </section>
             {/* Contact section */}
             <section about="ProContactject" className="mt-10">
