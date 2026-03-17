@@ -9,7 +9,7 @@ import { BlurFade } from '@/components/ui/blur-fade';
 import { TextAnimate } from '@/components/ui/text-animate';
 import Link from 'next/link';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-const BLUR_FADE_DELAY = 0.05;
+const BLUR_FADE_DELAY = 0.03;
 export default function Home() {
     return (
         <main className="min-h-screen max-w-2xl mx-auto  py-12 px-6  sm:py-24">
@@ -174,7 +174,6 @@ export default function Home() {
                     </BlurFade>
                 </div>
             </section>
-            <DockMenu/>
         </main>
     );
 }
