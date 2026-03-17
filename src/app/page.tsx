@@ -174,7 +174,7 @@ export default function Home() {
                     </BlurFade>
                 </div>
             </section>
-            <DockMenu />
+            <DockMenu/>
         </main>
     );
 }

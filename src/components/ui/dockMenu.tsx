@@ -1,40 +1,113 @@
 'use client';
 
 import React from 'react';
-import { Dock, DockIcon } from './dock';
-import { Github, Home, Notebook, Sun, FolderCode } from 'lucide-react';
 import Link from 'next/link';
+import { HomeIcon, NotebookIcon, FolderGitIcon, GithubIcon, SunIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Dock, DockIcon } from './dock';
+export type IconProps = React.HTMLAttributes<SVGElement>;
 
+const DATA = {
+    home: [{ href: '/', icon: HomeIcon, label: 'Home' },{ href: '/blog', icon: NotebookIcon, label: 'Blog' },
+        {
+            href: '/project',
+            icon: FolderGitIcon,
+            label: 'Project',
+        },],
+    social: {
+        GitHub: {
+            name: 'GitHub',
+            url: '#',
+            icon: GithubIcon,
+        },
+    },
+    other: {
+        darklight: {
+            name: 'dark/light',
+            url: '#',
+            icon: SunIcon,
+        },
+    },
+};
 export default function DockMenu() {
     return (
-        <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30">
-            <Dock className="z-50 pointer-events-auto relative h-14 p-2 w-fit mx-auto flex gap-2 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5">
-                <DockIcon>
-                    <Link href="/">
-                        <Home />
-                    </Link>
-                </DockIcon>
-                <DockIcon>
-                    <Link href="/project">
-                        <FolderCode />
-                    </Link>
-                </DockIcon>
-                <DockIcon>
-                    <Link href="/blog">
-                        <Notebook />
-                    </Link>
-                </DockIcon>
-                <DockIcon>
-                    <Link href="https://github.com/lampng">
-                        <Github />
-                    </Link>
-                </DockIcon>
-                <DockIcon>
-                    <Link href="/">
-                        <Sun />
-                    </Link>
-                </DockIcon>
-            </Dock>
+        <div className="fixed inset-x-0 bottom-4 z-30">
+            <TooltipProvider>
+                <Dock direction="middle" className='bg-card/90'>
+                    {/* Home */}
+                    {DATA.home.map((item) => (
+                        <DockIcon key={item.label}>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Link
+                                        href={item.href}
+                                        aria-label={item.label}
+                                        className={cn(
+                                            buttonVariants({ variant: 'ghost', size: 'icon' }),
+                                            'size-12 rounded-full',
+                                        )}
+                                    >
+                                        <item.icon className="size-4" />
+                                    </Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{item.label}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </DockIcon>
+                    ))}
+                    <Separator orientation="vertical" className="h-full" />
+
+                    {/* social */}
+                    {Object.entries(DATA.social).map(([name, dark_light]) => (
+                        <DockIcon key={name}>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Link
+                                        href={dark_light.url}
+                                        aria-label={dark_light.name}
+                                        className={cn(
+                                            buttonVariants({ variant: 'ghost', size: 'icon' }),
+                                            'size-12 rounded-full',
+                                        )}
+                                    >
+                                        <dark_light.icon className="size-4" />
+                                    </Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{name}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </DockIcon>
+                    ))}
+                    {/* other */}
+                    <Separator orientation="vertical" className="h-full" />
+                    {Object.entries(DATA.other).map(([name, dark_light]) => (
+                        <DockIcon key={name}>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Link
+                                        href={dark_light.url}
+                                        aria-label={dark_light.name}
+                                        className={cn(
+                                            buttonVariants({ variant: 'ghost', size: 'icon' }),
+                                            'size-12 rounded-full',
+                                        )}
+                                    >
+                                        <dark_light.icon className="size-4" />
+                                    </Link>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{dark_light.name}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </DockIcon>
+                    ))}
+                </Dock>
+            </TooltipProvider>
         </div>
     );
 }
