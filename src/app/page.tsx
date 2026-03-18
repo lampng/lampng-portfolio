@@ -9,6 +9,16 @@ import { BlurFade } from '@/components/ui/blur-fade';
 import { TextAnimate } from '@/components/ui/text-animate';
 import Link from 'next/link';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 const BLUR_FADE_DELAY = 0.03;
 const Technologies = [
     {
@@ -16,16 +26,21 @@ const Technologies = [
         backend: ['Node.js', 'Express', ' NestJS', 'PostgreSQL', 'MongoDB'],
     },
 ];
-const project = [
+const projects = [
     {
-        slug: '',
+        id: '1',
+        slug: 'Slugg1',
         image: '',
-        title: '',
-        content: '',
-        date: '',
-        description: '',
-        Technologies: '',
-        soucre: '',
+        content: 'content',
+        title: 'Balance Board Blog Pro',
+        date: 'June 2025',
+        description:
+            'A modern markdown blog platform built with Next.js, Prisma, and Tailwind CSS, featuring authentication, internationalization, and rich markdown rendering.',
+        technologies: ['Node.js', 'Express', ' NestJS', 'PostgreSQL', 'MongoDB'],
+        soucre: [
+            { social: 'github', link: 'https://github.com/abc', icon: '' },
+            { social: 'demo', link: 'https://demo.com', icon: '' },
+        ],
     },
 ];
 
@@ -45,7 +60,7 @@ export default function Home() {
                                 by="line"
                                 once
                             >
-                                Hi, I&apos;m Lâm 👋
+                                Hi, I&apos;m Lâm 👋🏻
                             </TextAnimate>
                         </div>
                         <div className="flex">
@@ -108,35 +123,39 @@ export default function Home() {
                 >
                     Technologies
                 </TextAnimate>
-                <Accordion type="single" collapsible className="w-full">
-                    {Object.entries(tech).map(([key, items]) => {
-                        return (
-                            <AccordionItem key={key} value={key}>
-                                <AccordionTrigger className="capitalize">{key}</AccordionTrigger>
+                <BlurFade delay={BLUR_FADE_DELAY * 4} className="order-1 md:order-2" offset={0} inView>
+                    <Accordion type="single" collapsible className="w-full">
+                        {Object.entries(tech).map(([key, items]) => {
+                            return (
+                                <AccordionItem key={key} value={key}>
+                                    <AccordionTrigger className="capitalize">{key}</AccordionTrigger>
 
-                                <AccordionContent>
-                                    <div className="flex flex-wrap text-sm text-muted-foreground">
-                                        {items.map((item, index) => (
-                                            <span
-                                                key={item}
-                                                className={item === 'NestJS' ? 'font-semibold text-blue-500' : ''}
-                                            >
-                                                {item}
-                                                {index < items.length - 1 && <span className="mx-2">-</span>}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
-                        );
-                    })}
-                </Accordion>
+                                    <AccordionContent>
+                                        <div className="flex flex-wrap text-sm text-muted-foreground">
+                                            {items.map((item, index) => (
+                                                <span
+                                                    key={item}
+                                                    className={item === 'NestJS' ? 'font-semibold text-blue-500' : ''}
+                                                >
+                                                    {item}
+                                                    {index < items.length - 1 && <span className="mx-2">-</span>}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            );
+                        })}
+                    </Accordion>
+                </BlurFade>
             </section>
             {/* Project section */}
-            <section about="Project" className="mt-10">
+            <section about="project" className="mt-10">
                 <div className="flex flex-col items-center justify-center text-center space-y-3">
-                    <BlurFade delay={BLUR_FADE_DELAY * 6} className="order-1 md:order-2" offset={0} inView>
-                        <Button className="pointer-events-none">My Project</Button>
+                    <BlurFade delay={BLUR_FADE_DELAY * 5} className="order-1 md:order-2" offset={0} inView>
+                        <Button asChild className="pointer-events-none">
+                            <div>My Project</div>
+                        </Button>
                         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
                             Check out my latest project
                         </h1>
@@ -146,19 +165,68 @@ export default function Home() {
                         </span>
                     </BlurFade>
                 </div>
-                <div>Hello project</div>
+                <BlurFade delay={BLUR_FADE_DELAY * 6} className="order-1 md:order-2 my-11" offset={0} inView>
+                    {projects.length > 0 ? (
+                        <div className=" justify-items-center grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            {projects.map((project) => {
+                                return (
+                                    <Card key={project.id} className="relative w-full max-w-sm pt-0">
+                                        <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
+                                        <Link
+                                            href={`/project/${project.slug}`}
+                                            className="relative z-40 overflow-hidden rounded-t-lg "
+                                        >
+                                            <img
+                                                src="/me.jpg"
+                                                alt="Event cover"
+                                                className="h-60  transition-transform duration-300 hover:scale-110 z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
+                                            />
+                                        </Link>
+                                        <CardHeader>
+                                            <CardTitle className="font-bold">{project.title}</CardTitle>
+                                            <p>{project.date}</p>
+                                            <CardDescription>
+                                                {project.description}
+                                                <div className="flex flex-wrap gap-1 my-2">
+                                                    {project.technologies?.map((tech, index) => (
+                                                        <Badge key={index} variant="secondary">
+                                                            {tech}
+                                                        </Badge>
+                                                    ))}
+                                                </div>
+                                            </CardDescription>
+                                            <div className="flex flex-wrap gap-2 ">
+                                                {project.soucre?.map((tech, index) => (
+                                                    <Link key={index} href={`${tech.link}`}>
+                                                        <div className="p-2 backitems-center rounded-md border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80 flex gap-2 px-2 py-1 text-[10px]">
+                                                            {tech.icon} {tech.social}
+                                                        </div>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </CardHeader>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <p>No project yet</p>
+                    )}
+                </BlurFade>
             </section>
             {/* Contact section */}
-            <section about="ProContactject" className="mt-10">
+            <section about="contact" className="mt-10">
                 <div className="flex flex-col items-center justify-center text-center space-y-3">
                     <BlurFade delay={BLUR_FADE_DELAY * 6} className="order-1 md:order-2" offset={0} inView>
-                        <Button className="pointer-events-none">Contact</Button>
+                        <Button className="pointer-events-none" asChild>
+                            <div>Contact</div>
+                        </Button>
                         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
                             Get in Touch
                         </h1>
                         <span className="text-muted-foreground">
                             Feel free to reach out if youd like to chat Simply send me an{' '}
-                            <a href="mailto:lampngia@gmail.com" className="">
+                            <a href="mailto:lampngia@gmail.com" className="text-accent-foreground font-bold">
                                 email with your question
                             </a>{' '}
                             and I&apos;ll get back to you as soon as possible.

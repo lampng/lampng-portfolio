@@ -8,16 +8,48 @@ import { ScrollProgress } from '@/components/ui/scroll-progress';
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-    title: 'lampng - Portfolio',
+    metadataBase: new URL('https://lampng.site'),
+
+    title: {
+        default: 'lampng',
+        template: '%s | lampng',
+    },
+
     description: 'Full-stack developer portfolio & blog',
-    icons: '/lampng.png',
+
+    openGraph: {
+        title: 'lampng',
+        description: 'Full-stack developer portfolio & blog',
+        url: '/',
+        siteName: 'lampng',
+        images: [
+            {
+                url: '/lampng.png',
+                width: 1200,
+                height: 630,
+            },
+        ],
+        locale: 'vi_VN',
+        type: 'website',
+    },
+
+    twitter: {
+        card: 'summary_large_image',
+        title: 'lampng',
+        description: 'Full-stack developer portfolio & blog',
+        images: ['/lampng.png'],
+    },
+
+    icons: {
+        icon: '/lampng.png',
+    },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={cn('font-sans', geist.variable)}>
+        <html lang="vi" suppressHydrationWarning className={cn('font-sans', geist.variable)}>
             <body>
-                <ScrollProgress/>
+                <ScrollProgress />
                 {children}
                 <DockMenu />
             </body>

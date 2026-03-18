@@ -8,15 +8,13 @@ import { buttonVariants } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Dock, DockIcon } from './dock';
-export type IconProps = React.HTMLAttributes<SVGElement>;
 
 const DATA = {
-    home: [{ href: '/', icon: HomeIcon, label: 'Home' },{ href: '/blog', icon: NotebookIcon, label: 'Blog' },
-        {
-            href: '/project',
-            icon: FolderGitIcon,
-            label: 'Project',
-        },],
+    home: [
+        { href: '/', icon: HomeIcon, label: 'Home' },
+        { href: '/blog', icon: NotebookIcon, label: 'Blog' },
+        { href: '/project', icon: FolderGitIcon, label: 'Project' },
+    ],
     social: {
         GitHub: {
             name: 'GitHub',
@@ -24,19 +22,13 @@ const DATA = {
             icon: GithubIcon,
         },
     },
-    other: {
-        darklight: {
-            name: 'dark/light',
-            url: '#',
-            icon: SunIcon,
-        },
-    },
 };
+
 export default function DockMenu() {
     return (
         <div className="fixed inset-x-0 bottom-4 z-30">
             <TooltipProvider>
-                <Dock direction="middle" className='bg-card/90'>
+                <Dock direction="middle" className="bg-card/90">
                     {/* Home */}
                     {DATA.home.map((item) => (
                         <DockIcon key={item.label}>
@@ -59,22 +51,23 @@ export default function DockMenu() {
                             </Tooltip>
                         </DockIcon>
                     ))}
+
                     <Separator orientation="vertical" className="h-full" />
 
-                    {/* social */}
-                    {Object.entries(DATA.social).map(([name, dark_light]) => (
+                    {/* Social */}
+                    {Object.entries(DATA.social).map(([name, item]) => (
                         <DockIcon key={name}>
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Link
-                                        href={dark_light.url}
-                                        aria-label={dark_light.name}
+                                        href={item.url}
+                                        aria-label={item.name}
                                         className={cn(
                                             buttonVariants({ variant: 'ghost', size: 'icon' }),
                                             'size-12 rounded-full',
                                         )}
                                     >
-                                        <dark_light.icon className="size-4" />
+                                        <item.icon className="size-4" />
                                     </Link>
                                 </TooltipTrigger>
                                 <TooltipContent>
@@ -83,29 +76,28 @@ export default function DockMenu() {
                             </Tooltip>
                         </DockIcon>
                     ))}
-                    {/* other */}
+
                     <Separator orientation="vertical" className="h-full" />
-                    {Object.entries(DATA.other).map(([name, dark_light]) => (
-                        <DockIcon key={name}>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Link
-                                        href={dark_light.url}
-                                        aria-label={dark_light.name}
-                                        className={cn(
-                                            buttonVariants({ variant: 'ghost', size: 'icon' }),
-                                            'size-12 rounded-full',
-                                        )}
-                                    >
-                                        <dark_light.icon className="size-4" />
-                                    </Link>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>{dark_light.name}</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </DockIcon>
-                    ))}
+
+                    {/* Theme Toggle */}
+                    <DockIcon>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button
+                                    aria-label="Toggle theme"
+                                    className={cn(
+                                        buttonVariants({ variant: 'ghost', size: 'icon' }),
+                                        'size-12 rounded-full',
+                                    )}
+                                >
+                                    <SunIcon className="size-4" />
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Toggle theme</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </DockIcon>
                 </Dock>
             </TooltipProvider>
         </div>
