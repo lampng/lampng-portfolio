@@ -23,8 +23,8 @@ import { getTechnologies } from '@/lib/data/getTechnologies';
 const BLUR_FADE_DELAY = 0.03;
 
 export default function Home() {
-    const technologies = await getTechnologies();
-    const projects = await getProjects();
+    const technologies = getTechnologies();
+    const projects = getProjects();
     return (
         <main className="min-h-screen max-w-2xl mx-auto  py-12 px-6  sm:py-24">
             <section className="max-w-2xl mx-auto">
