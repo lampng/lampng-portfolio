@@ -21,8 +21,8 @@ import { Badge } from '@/components/ui/badge';
 import { getProjects } from '@/lib/data/getProjects';
 import { getTechnologies } from '@/lib/data/getTechnologies';
 const BLUR_FADE_DELAY = 0.03;
-
 export default function Home() {
+    // Data temp
     const technologies = getTechnologies();
     const projects = getProjects();
     return (
