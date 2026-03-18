@@ -149,7 +149,7 @@ export default async function Home() {
                                     <Card key={project?.id} className="relative w-full max-w-sm pt-0">
                                         <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
                                         <Link
-                                            href={`/project/${project.slug}`}
+                                            href={`/project/${project?.slug}`}
                                             className="relative z-40 overflow-hidden rounded-t-lg "
                                         >
                                             <img
@@ -159,10 +159,10 @@ export default async function Home() {
                                             />
                                         </Link>
                                         <CardHeader>
-                                            <CardTitle className="font-bold">{project.title}</CardTitle>
-                                            <p>{project.date}</p>
+                                            <CardTitle className="font-bold">{project?.title}</CardTitle>
+                                            <p>{project?.date}</p>
                                             <CardDescription>
-                                                {project.description}
+                                                {project?.description}
                                                 <div className="flex flex-wrap gap-1 my-2">
                                                     {project.technologies?.map((tech, index) => (
                                                         <Badge key={index} variant="secondary">
