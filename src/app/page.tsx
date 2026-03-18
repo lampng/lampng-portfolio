@@ -146,7 +146,7 @@ export default async function Home() {
                         <div className=" justify-items-center grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {projects.map((project) => {
                                 return (
-                                    <Card key={project.id} className="relative w-full max-w-sm pt-0">
+                                    <Card key={project?.id} className="relative w-full max-w-sm pt-0">
                                         <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
                                         <Link
                                             href={`/project/${project.slug}`}
