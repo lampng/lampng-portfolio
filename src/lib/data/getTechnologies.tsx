@@ -1,4 +1,4 @@
-export async function getTechnologies() {
+export function getTechnologies() {
     return {
         frontend: ['HTML - CSS', 'TailwindCSS', 'Shadcn', 'JavaScript', 'React.js', 'Next.js'],
         backend: ['Node.js', 'Express', ' NestJS', 'PostgreSQL', 'MongoDB'],

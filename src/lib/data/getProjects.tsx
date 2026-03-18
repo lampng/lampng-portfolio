@@ -1,5 +1,5 @@
 // data/projects.ts
-export async function getProjects() {
+export function getProjects() {
     return [
         {
             id: '1',
