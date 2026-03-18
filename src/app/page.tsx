@@ -164,7 +164,7 @@ export default function Home() {
                                             <CardDescription>
                                                 {project?.description}
                                                 <div className="flex flex-wrap gap-1 my-2">
-                                                    {project.technologies?.map((tech, index) => (
+                                                    {project?.technologies.map((tech, index) => (
                                                         <Badge key={index} variant="secondary">
                                                             {tech}
                                                         </Badge>
@@ -172,7 +172,7 @@ export default function Home() {
                                                 </div>
                                             </CardDescription>
                                             <div className="flex flex-wrap gap-2 ">
-                                                {project.soucre?.map((tech, index) => (
+                                                {project?.soucre.map((tech, index) => (
                                                     <a key={index} href={`${tech.link}`}>
                                                         <div className="p-2 backitems-center rounded-md border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80 flex gap-2 px-2 py-1 text-[10px]">
                                                             {tech.icon} {tech.social}
