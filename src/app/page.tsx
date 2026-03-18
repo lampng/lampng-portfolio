@@ -22,7 +22,7 @@ import { getProjects } from '@/lib/data/getProjects';
 import { getTechnologies } from '@/lib/data/getTechnologies';
 const BLUR_FADE_DELAY = 0.03;
 
-export default async function Home() {
+export default function Home() {
     const technologies = await getTechnologies();
     const projects = await getProjects();
     return (
