@@ -1,5 +1,4 @@
-'use client';
-
+/* eslint-disable @next/next/no-img-element */
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import DockMenu from '@/components/ui/dockMenu';
@@ -19,33 +18,13 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { getProjects } from '@/lib/data/getProjects';
+import { getTechnologies } from '@/lib/data/getTechnologies';
 const BLUR_FADE_DELAY = 0.03;
-const Technologies = [
-    {
-        frontend: ['HTML - CSS', 'TailwindCSS', 'Shadcn', 'JavaScript', 'React.js', 'Next.js'],
-        backend: ['Node.js', 'Express', ' NestJS', 'PostgreSQL', 'MongoDB'],
-    },
-];
-const projects = [
-    {
-        id: '1',
-        slug: 'Slugg1',
-        image: '',
-        content: 'content',
-        title: 'Balance Board Blog Pro',
-        date: 'June 2025',
-        description:
-            'A modern markdown blog platform built with Next.js, Prisma, and Tailwind CSS, featuring authentication, internationalization, and rich markdown rendering.',
-        technologies: ['Node.js', 'Express', ' NestJS', 'PostgreSQL', 'MongoDB'],
-        soucre: [
-            { social: 'github', link: 'https://github.com/abc', icon: '' },
-            { social: 'demo', link: 'https://demo.com', icon: '' },
-        ],
-    },
-];
 
-export default function Home() {
-    const tech = Technologies[0];
+export default async function Home() {
+    const technologies = await getTechnologies();
+    const projects = await getProjects();
     return (
         <main className="min-h-screen max-w-2xl mx-auto  py-12 px-6  sm:py-24">
             <section className="max-w-2xl mx-auto">
@@ -125,27 +104,24 @@ export default function Home() {
                 </TextAnimate>
                 <BlurFade delay={BLUR_FADE_DELAY * 4} className="order-1 md:order-2" offset={0} inView>
                     <Accordion type="single" collapsible className="w-full">
-                        {Object.entries(tech).map(([key, items]) => {
-                            return (
-                                <AccordionItem key={key} value={key}>
-                                    <AccordionTrigger className="capitalize">{key}</AccordionTrigger>
-
-                                    <AccordionContent>
-                                        <div className="flex flex-wrap text-sm text-muted-foreground">
-                                            {items.map((item, index) => (
-                                                <span
-                                                    key={item}
-                                                    className={item === 'NestJS' ? 'font-semibold text-blue-500' : ''}
-                                                >
-                                                    {item}
-                                                    {index < items.length - 1 && <span className="mx-2">-</span>}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </AccordionContent>
-                                </AccordionItem>
-                            );
-                        })}
+                        {Object.entries(technologies).map(([key, items]) => (
+                            <AccordionItem key={key} value={key}>
+                                <AccordionTrigger className="capitalize">{key}</AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-wrap text-sm text-muted-foreground">
+                                        {items.map((item, index) => (
+                                            <span
+                                                key={item}
+                                                className={item === 'NestJS' ? 'font-semibold text-blue-500' : ''}
+                                            >
+                                                {item}
+                                                {index < items.length - 1 && <span className="mx-2">-</span>}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </BlurFade>
             </section>
@@ -197,11 +173,11 @@ export default function Home() {
                                             </CardDescription>
                                             <div className="flex flex-wrap gap-2 ">
                                                 {project.soucre?.map((tech, index) => (
-                                                    <Link key={index} href={`${tech.link}`}>
+                                                    <a key={index} href={`${tech.link}`}>
                                                         <div className="p-2 backitems-center rounded-md border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80 flex gap-2 px-2 py-1 text-[10px]">
                                                             {tech.icon} {tech.social}
                                                         </div>
-                                                    </Link>
+                                                    </a>
                                                 ))}
                                             </div>
                                         </CardHeader>
