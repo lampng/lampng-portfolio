@@ -1,22 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import DockMenu from '@/components/ui/dockMenu';
-import { ArrowRight, Circle, MessageCircle } from 'lucide-react';
-import Image from 'next/image';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { TextAnimate } from '@/components/ui/text-animate';
 import Link from 'next/link';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import {
-    Card,
-    CardAction,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { getProjects } from '@/lib/data/getProjects';
 import { getTechnologies } from '@/lib/data/getTechnologies';
