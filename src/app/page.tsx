@@ -121,7 +121,7 @@ export default function Home() {
                         <Button asChild className="pointer-events-none">
                             <div>My Project</div>
                         </Button>
-                        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
+                        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none py-2">
                             Check out my latest project
                         </h1>
 
@@ -190,7 +190,7 @@ export default function Home() {
                         <Button className="pointer-events-none" asChild>
                             <div>Contact</div>
                         </Button>
-                        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
+                        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none  py-2">
                             Get in Touch
                         </h1>
                         <span className="text-muted-foreground">
