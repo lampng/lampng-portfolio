@@ -1,19 +1,15 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
 import DockMenu from '@/components/dockMenu';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
+const jetbrainsMono = JetBrains_Mono({
     subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin'],
+    variable: '--font-jetbrains',
+    display: 'swap',
 });
 export const metadata: Metadata = {
     metadataBase: new URL('https://lampng.site'),
@@ -30,8 +26,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="vi" suppressHydrationWarning className="dark">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <html lang="en" suppressHydrationWarning>
+            <body className={` ${jetbrainsMono.variable} antialiased  font-mono`}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <ScrollProgress />
                     {children}

@@ -21,7 +21,7 @@ export default function Home() {
                     <div className="flex-col flex flex-1 space-y-3">
                         <div className="flex">
                             <TextAnimate
-                                className="inline-block text-5xl font-bold tracking-tighter sm:text-6xl xl:text-6xl/none"
+                                className="inline-block text-4xl font-bold tracking-tighter sm:text-5xl xl:text-5xl/none"
                                 animation="blurIn"
                                 delay={BLUR_FADE_DELAY}
                                 as="span"
