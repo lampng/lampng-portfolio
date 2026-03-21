@@ -172,13 +172,17 @@ export default function Home() {
                                                 </div>
                                             </CardDescription>
                                             <div className="flex flex-wrap gap-2 ">
-                                                {project?.soucre.map((tech, index) => (
-                                                    <a key={index} href={`${tech.link}`}>
-                                                        <div className="p-2 backitems-center rounded-md border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80 flex gap-2 px-2 py-1 text-[10px]">
-                                                            {tech.icon} {tech.social}
-                                                        </div>
-                                                    </a>
-                                                ))}
+                                                {project?.soucre.map((tech, index) => {
+                                                    const Icon = tech.icon;
+                                                    return (
+                                                        <a key={index} href={`${tech.link}`}>
+                                                            <div className="p-2 backitems-center rounded-md border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80 flex gap-1 px-2 py-1 text-[10px]">
+                                                                {Icon && <Icon className="w-3 h-3" />}
+                                                                {tech.social}
+                                                            </div>
+                                                        </a>
+                                                    );
+                                                })}
                                             </div>
                                         </CardHeader>
                                     </Card>

@@ -1,12 +1,20 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
-import DockMenu from '@/components/ui/dockMenu';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
+import DockMenu from '@/components/dockMenu';
+import { ThemeProvider } from '@/components/theme-provider';
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const geistSans = Geist({
+    variable: '--font-geist-sans',
+    subsets: ['latin'],
+});
 
+const geistMono = Geist_Mono({
+    variable: '--font-geist-mono',
+    subsets: ['latin'],
+});
 export const metadata: Metadata = {
     metadataBase: new URL('https://lampng.site'),
 
@@ -14,32 +22,7 @@ export const metadata: Metadata = {
         default: 'lampng',
         template: '%s | lampng',
     },
-
     description: 'Full-stack developer portfolio & blog',
-
-    openGraph: {
-        title: 'lampng',
-        description: 'Full-stack developer portfolio & blog',
-        url: '/',
-        siteName: 'lampng',
-        images: [
-            {
-                url: '/lampng.png',
-                width: 1200,
-                height: 630,
-            },
-        ],
-        locale: 'vi_VN',
-        type: 'website',
-    },
-
-    twitter: {
-        card: 'summary_large_image',
-        title: 'lampng',
-        description: 'Full-stack developer portfolio & blog',
-        images: ['/lampng.png'],
-    },
-
     icons: {
         icon: '/lampng.png',
     },
@@ -47,11 +30,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="vi" suppressHydrationWarning className={cn('font-sans', geist.variable)}>
-            <body>
-                <ScrollProgress />
-                {children}
-                <DockMenu />
+        <html lang="vi" suppressHydrationWarning className="dark">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                    <ScrollProgress />
+                    {children}
+                    <DockMenu />
+                </ThemeProvider>
             </body>
         </html>
     );
